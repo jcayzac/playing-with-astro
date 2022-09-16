@@ -1,0 +1,12 @@
+{
+  "css.customData": ["./.vscode/css.json"],
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".git": true,
+    "node_modules": true
+  },
+  "files.associations": {
+    "*.mdx": "markdown"
+  }
+}

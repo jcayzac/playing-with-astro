@@ -1,0 +1,20 @@
+---
+import '@styles/base.css'
+import MainFooter from '@components/MainFooter.astro'
+//console.log(`PROPS:`, Astro.props)
+const { title, url } = Astro.props.content
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta rel="canonical" href={new URL(url, Astro.site).pathname}>
+  </head>
+  <body>
+    <slot />
+    <MainFooter />
+  </body>
+</html>

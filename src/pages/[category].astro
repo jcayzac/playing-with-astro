@@ -1,0 +1,36 @@
+---
+import type { GetStaticPathsOptions, GetStaticPathsResult } from 'astro'
+interface Frontmatter {
+  title: string
+  in: string
+}
+
+export const getStaticPaths = async ({paginate}: GetStaticPathsOptions): Promise<GetStaticPathsResult> => {
+  const posts = (await Astro.glob<Frontmatter>('./*.md'))
+
+    return [
+    'finance',
+    'software',
+  ].map(category => {
+    const categoryPosts = posts.filter(({ frontmatter }) => frontmatter.in === category)
+
+    return {
+      params: {
+        category,
+      },
+    }
+  })
+}
+
+const { category } = Astro.props
+const posts = (await Astro.glob<Frontmatter>('./*.md')).filter(({ frontmatter }) => frontmatter.in === category)
+const json = JSON.stringify(posts, null, 2)
+---
+<html>
+<body>
+<h1>{category}</h1>
+<pre>
+{json}
+</pre>
+</body>
+</html>
